@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agile Group 2 Form with Autocomplete Address & Calendar DOB</title>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/jquery.easy-autocomplete.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/easy-autocomplete/1.3.5/easy-autocomplete.min.css">
+</head>
+<script>
+  jQuery("#postcode-go").click(function() {
+   if (jQuery("#postcode").val() == '') {
+    return;
+   }
+   let dropdown = jQuery('#postcode-dropdown');
+   dropdown.empty();
+   dropdown.show()
+   dropdown.append('<option selected="true" disabled>Choose your address</option>');
+   dropdown.prop('selectedIndex', 0);
+   dropdown.change(function() {
+    var selectedAddress = JSON.parse($(this).children("option:selected").val());
+    alert("The selected address is: " + selectedAddress.address + " And city is: " + selectedAddress.citytown);
+   });
+   const url = '';
+   jQuery.ajax({
+    beforeSend: function(request) {
+     request.setRequestHeader("x-api-key", '[your_api_key]');
+    },
+    dataType: "json",
+    url: "https://api-full.addressian.co.uk/address/" + jQuery("#postcode").val(),
+    success: function(data) {
+     jQuery.each(data, function(key, entry) {
+      dropdown.append(jQuery('<option></option>').attr('value', JSON.stringify(entry)).text(entry.address.join(', ')));
+     })
+    }
+   });
+   jQuery.getJSON("", function(data) {});
+  });
+ </script>
+<body>
+ <!-- Input form -->
+
+ <section class="easy-autocomplete">
+    <input id="postcode" type="text" autocomplete="off" placeholder="search...">
+    <button id="postcode-go">Go</button>
+    <select id="postcode-dropdown" hidden=""></select>
+   </section>
+
+</body>
+<script>
+    jQuery("#postcode-go").click(function() {
+     if (jQuery("#postcode").val() == '') {
+      return;
+     }
+     let dropdown = jQuery('#postcode-dropdown');
+     dropdown.empty();
+     dropdown.show()
+     dropdown.append('<option selected="true" disabled>Choose your address</option>');
+     dropdown.prop('selectedIndex', 0);
+     dropdown.change(function() {
+      var selectedAddress = JSON.parse($(this).children("option:selected").val());
+      alert("The selected address is: " + selectedAddress.address + " And city is: " + selectedAddress.citytown);
+     });
+     const url = '';
+     jQuery.ajax({
+      beforeSend: function(request) {
+       request.setRequestHeader("x-api-key", '[your_api_key]');
+      },
+      dataType: "json",
+      url: "https://api-full.addressian.co.uk/address/" + jQuery("#postcode").val(),
+      success: function(data) {
+       jQuery.each(data, function(key, entry) {
+        dropdown.append(jQuery('<option></option>').attr('value', JSON.stringify(entry)).text(entry.address.join(', ')));
+       })
+      }
+     });
+     jQuery.getJSON("", function(data) {});
+    });
+   </script>
+</html>
