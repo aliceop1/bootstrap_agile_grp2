@@ -13,19 +13,23 @@
 <body class="container bg-dark">
     <form class="container-fluid p-5 my-5 bg-dark text-white"> <!--Needs action?-->
         <h1>Form</h1>
-        <div class="row"> 
-            <label class="col-sm-2" for="forename">Forename</label>
-            <input class="col-sm-3" name="forename" placeholder="John">
+        <div class="form-group"> 
+            <label for="forename">Forename</label>
+            <input class="form-control" name="forename" placeholder="John">
         </div>
-        <div class="row">
-            <label class="col-sm-2" for="surname">Surname</label>
-            <input class="col-sm-3" name="surname" placeholder="Smith">
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input class="form-control" name="surname" placeholder="Smith">
         </div>
-        <div class="row">
-            <label class="col-sm-2" for="house_number">House number</label>
-            <input class="col-sm-3" name="house_number" placeholder="11">
+        <div class="form-group">
+            <label for="date_of_birth">Date of birth</label>
+            <input class="form-control" name="date_of_birth">
         </div>
-        <div class="row">
+        <div class="form-group">
+            <label for="house_number">House number</label>
+            <input class="form-control" name="house_number" placeholder="11">
+        </div>
+        <div class="form-group">
             <label>Post code</label>
             <section class="easy-autocomplete">
                 <input id="postcode" type="text" autocomplete="off" placeholder="search...">
@@ -33,11 +37,7 @@
                 <select id="postcode-dropdown" hidden=""></select>
                </section>
         </div>
-        <div class="row">
-            <label class="col-sm-2" for="date_of_birth">Date of birth</label>
-            <input class="col-sm-3" name="date_of_birth">
-        </div>
-        <input type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 </body>
 </html>
